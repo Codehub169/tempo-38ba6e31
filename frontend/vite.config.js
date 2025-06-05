@@ -5,11 +5,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 9000, // Ensure frontend dev server runs on port 9000
+    port: 5173, // Changed from 9000 to avoid conflict with backend on default port 9000
     proxy: {
       // Proxy API requests to the backend server
       '/api': {
-        target: 'http://localhost:3000', // Default backend port if not specified otherwise, will be overridden by startup.sh
+        target: 'http://localhost:9000', // Point to the backend server running on port 9000
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '/api') // Ensure /api prefix is maintained for backend routes
       }
